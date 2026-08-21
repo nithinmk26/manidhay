@@ -176,8 +176,6 @@ function initConsultationModal() {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
       
       const name = document.getElementById('modalName')?.value || '';
       const phone = document.getElementById('modalPhone')?.value || '';
@@ -186,9 +184,6 @@ function initConsultationModal() {
       const serviceText = serviceSelect?.options[serviceSelect.selectedIndex]?.text || '';
       const location = document.getElementById('modalLocation')?.value || '';
       const message = document.getElementById('modalMessage')?.value || '';
-
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Opening WhatsApp...';
 
       // Build structured WhatsApp inquiry message
       const whatsappText = encodeURIComponent(
@@ -201,16 +196,17 @@ function initConsultationModal() {
         `📝 *Project Details:* ${message || 'Please provide quotation and engineering details.'}`
       );
 
-      const whatsappUrl = `https://wa.me/919986470846?text=${whatsappText}`;
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=919986470846&text=${whatsappText}`;
 
-      setTimeout(() => {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-        closeModal();
-        form.reset();
-        showToast('Opening WhatsApp to send your quotation request to +91 9986 470 846...');
-        window.open(whatsappUrl, '_blank');
-      }, 500);
+      closeModal();
+      form.reset();
+      showToast('Opening WhatsApp to send your quotation request to +91 9986 470 846...');
+
+      // Direct synchronous navigation prevents browser popup blockers
+      const win = window.open(whatsappUrl, '_blank');
+      if (!win || win.closed || typeof win.closed === 'undefined') {
+        window.location.href = whatsappUrl;
+      }
     });
   }
 }
@@ -222,8 +218,6 @@ function initContactForms() {
   contactForms.forEach(form => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn ? submitBtn.innerHTML : 'Submit';
 
       const name = form.querySelector('#contactName')?.value || '';
       const phone = form.querySelector('#contactPhone')?.value || '';
@@ -232,11 +226,6 @@ function initContactForms() {
       const serviceText = serviceSelect?.options[serviceSelect.selectedIndex]?.text || '';
       const location = form.querySelector('#contactLocation')?.value || '';
       const message = form.querySelector('#contactMessage')?.value || '';
-
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Opening WhatsApp...';
-      }
 
       // Build structured WhatsApp inquiry message
       const whatsappText = encodeURIComponent(
@@ -249,17 +238,16 @@ function initContactForms() {
         `📝 *Message:* ${message}`
       );
 
-      const whatsappUrl = `https://wa.me/919986470846?text=${whatsappText}`;
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=919986470846&text=${whatsappText}`;
 
-      setTimeout(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-        }
-        form.reset();
-        showToast('Opening WhatsApp to send your inquiry to +91 9986 470 846...');
-        window.open(whatsappUrl, '_blank');
-      }, 500);
+      form.reset();
+      showToast('Opening WhatsApp to send your inquiry to +91 9986 470 846...');
+
+      // Direct synchronous navigation prevents browser popup blockers
+      const win = window.open(whatsappUrl, '_blank');
+      if (!win || win.closed || typeof win.closed === 'undefined') {
+        window.location.href = whatsappUrl;
+      }
     });
   });
 }
