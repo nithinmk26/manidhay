@@ -179,16 +179,38 @@ function initConsultationModal() {
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerHTML;
       
+      const name = document.getElementById('modalName')?.value || '';
+      const phone = document.getElementById('modalPhone')?.value || '';
+      const email = document.getElementById('modalEmail')?.value || '';
+      const serviceSelect = document.getElementById('modalService');
+      const serviceText = serviceSelect?.options[serviceSelect.selectedIndex]?.text || '';
+      const location = document.getElementById('modalLocation')?.value || '';
+      const message = document.getElementById('modalMessage')?.value || '';
+
       submitBtn.disabled = true;
-      submitBtn.innerHTML = 'Sending...';
+      submitBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Opening WhatsApp...';
+
+      // Build structured WhatsApp inquiry message
+      const whatsappText = encodeURIComponent(
+        `*New Quotation / Consultation Request — Manidhay Business Services*\n\n` +
+        `👤 *Name:* ${name}\n` +
+        `📞 *Phone:* ${phone}\n` +
+        `✉️ *Email:* ${email}\n` +
+        `🏗️ *Service Required:* ${serviceText}\n` +
+        `📍 *Project Location:* ${location || 'Not Specified'}\n` +
+        `📝 *Project Details:* ${message || 'Please provide quotation and engineering details.'}`
+      );
+
+      const whatsappUrl = `https://wa.me/919986470846?text=${whatsappText}`;
 
       setTimeout(() => {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
         closeModal();
         form.reset();
-        showToast('Thank you! Your consultation request has been received. Our team will contact you shortly.');
-      }, 700);
+        showToast('Opening WhatsApp to send your quotation request to +91 9986 470 846...');
+        window.open(whatsappUrl, '_blank');
+      }, 500);
     });
   }
 }
@@ -203,10 +225,31 @@ function initContactForms() {
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn ? submitBtn.innerHTML : 'Submit';
 
+      const name = form.querySelector('#contactName')?.value || '';
+      const phone = form.querySelector('#contactPhone')?.value || '';
+      const email = form.querySelector('#contactEmail')?.value || '';
+      const serviceSelect = form.querySelector('#contactService');
+      const serviceText = serviceSelect?.options[serviceSelect.selectedIndex]?.text || '';
+      const location = form.querySelector('#contactLocation')?.value || '';
+      const message = form.querySelector('#contactMessage')?.value || '';
+
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Submitting...';
+        submitBtn.innerHTML = '<i class="fa-brands fa-whatsapp"></i> Opening WhatsApp...';
       }
+
+      // Build structured WhatsApp inquiry message
+      const whatsappText = encodeURIComponent(
+        `*New Project Inquiry — Manidhay Business Services*\n\n` +
+        `👤 *Name:* ${name}\n` +
+        `📞 *Phone:* ${phone}\n` +
+        `✉️ *Email:* ${email}\n` +
+        `🏗️ *Service:* ${serviceText}\n` +
+        `📍 *Location:* ${location || 'Not Specified'}\n` +
+        `📝 *Message:* ${message}`
+      );
+
+      const whatsappUrl = `https://wa.me/919986470846?text=${whatsappText}`;
 
       setTimeout(() => {
         if (submitBtn) {
@@ -214,8 +257,9 @@ function initContactForms() {
           submitBtn.innerHTML = originalText;
         }
         form.reset();
-        showToast('Your message has been sent successfully! We will get back to you shortly.');
-      }, 600);
+        showToast('Opening WhatsApp to send your inquiry to +91 9986 470 846...');
+        window.open(whatsappUrl, '_blank');
+      }, 500);
     });
   });
 }

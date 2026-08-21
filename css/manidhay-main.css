@@ -1722,6 +1722,43 @@ textarea.form-control {
   }
 }
 
+/* Floating WhatsApp Button */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  color: #FFFFFF !important;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  z-index: 999;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.floating-whatsapp-btn:hover {
+  background-color: #1EBE5D;
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.6);
+  color: #FFFFFF !important;
+}
+
+@media (max-width: 768px) {
+  .floating-whatsapp-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    font-size: 28px;
+  }
+}
+
 /* --- RESPONSIVE MEDIA QUERIES & MOBILE OPTIMIZATIONS --- */
 
 @media (max-width: 1024px) {
@@ -2026,7 +2063,33 @@ textarea.form-control {
     gap: 1.25rem !important;
   }
 
-  /* Toast Notification */
+  /* Floating WhatsApp Quick Action Button */
+  .floating-whatsapp-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: #FFFFFF !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    z-index: 999;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+  }
+
+  .floating-whatsapp-btn:hover {
+    background-color: #1EBE5D;
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 10px 28px rgba(37, 211, 102, 0.6);
+    color: #FFFFFF !important;
+  }
+
   .toast-container {
     left: 1rem;
     right: 1rem;
