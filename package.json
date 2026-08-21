@@ -1,0 +1,19 @@
+{
+  "name": "manidhay-website",
+  "version": "2.0.0",
+  "description": "Manidhay Business Services - One Stop Solution for Civil Engineering Services",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve . -p 8080",
+    "dev": "npx serve . -p 8080",
+    "serve:python": "python -m http.server 8080"
+  },
+  "keywords": [
+    "civil-engineering",
+    "structural-design",
+    "construction",
+    "precast-walls"
+  ],
+  "author": "Manidhay Business Services",
+  "license": "ISC"
+}
