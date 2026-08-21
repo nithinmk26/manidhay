@@ -185,15 +185,22 @@ function initConsultationModal() {
       const location = document.getElementById('modalLocation')?.value || '';
       const message = document.getElementById('modalMessage')?.value || '';
 
-      // Build structured WhatsApp inquiry message
+      // Build executive professional WhatsApp inquiry message
       const whatsappText = encodeURIComponent(
-        `*New Quotation / Consultation Request — Manidhay Business Services*\n\n` +
-        `👤 *Name:* ${name}\n` +
-        `📞 *Phone:* ${phone}\n` +
-        `✉️ *Email:* ${email}\n` +
-        `🏗️ *Service Required:* ${serviceText}\n` +
-        `📍 *Project Location:* ${location || 'Not Specified'}\n` +
-        `📝 *Project Details:* ${message || 'Please provide quotation and engineering details.'}`
+        `*CIVIL ENGINEERING INQUIRY & QUOTATION REQUEST*\n` +
+        `*Manidhay Business Services*\n` +
+        `─────────────────────────────\n\n` +
+        `*CLIENT DETAILS*\n` +
+        `• Full Name: ${name}\n` +
+        `• Contact: ${phone}\n` +
+        `• Email: ${email}\n` +
+        `• Project Location: ${location || 'Not Specified'}\n\n` +
+        `*SERVICE & REQUIREMENTS*\n` +
+        `• Vertical: ${serviceText}\n` +
+        `• Project Brief:\n` +
+        `${message || 'Requesting engineering consultation, structural review, and budget estimation.'}\n\n` +
+        `─────────────────────────────\n` +
+        `_Sent from Manidhay Web Portal (www.manidhay.com)_`
       );
 
       const whatsappUrl = `https://api.whatsapp.com/send?phone=919986470846&text=${whatsappText}`;
@@ -227,15 +234,22 @@ function initContactForms() {
       const location = form.querySelector('#contactLocation')?.value || '';
       const message = form.querySelector('#contactMessage')?.value || '';
 
-      // Build structured WhatsApp inquiry message
+      // Build executive professional WhatsApp inquiry message
       const whatsappText = encodeURIComponent(
-        `*New Project Inquiry — Manidhay Business Services*\n\n` +
-        `👤 *Name:* ${name}\n` +
-        `📞 *Phone:* ${phone}\n` +
-        `✉️ *Email:* ${email}\n` +
-        `🏗️ *Service:* ${serviceText}\n` +
-        `📍 *Location:* ${location || 'Not Specified'}\n` +
-        `📝 *Message:* ${message}`
+        `*PROJECT INQUIRY & CONSULTATION BRIEF*\n` +
+        `*Manidhay Business Services*\n` +
+        `─────────────────────────────\n\n` +
+        `*CLIENT DETAILS*\n` +
+        `• Full Name: ${name}\n` +
+        `• Contact: ${phone}\n` +
+        `• Email: ${email}\n` +
+        `• Project Location: ${location || 'Not Specified'}\n\n` +
+        `*SERVICE & REQUIREMENTS*\n` +
+        `• Vertical: ${serviceText}\n` +
+        `• Project Brief:\n` +
+        `${message || 'Requesting technical consultation and quotation estimation.'}\n\n` +
+        `─────────────────────────────\n` +
+        `_Sent from Manidhay Web Portal (www.manidhay.com)_`
       );
 
       const whatsappUrl = `https://api.whatsapp.com/send?phone=919986470846&text=${whatsappText}`;
